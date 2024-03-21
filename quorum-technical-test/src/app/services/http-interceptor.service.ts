@@ -17,14 +17,8 @@ export class HttpInterceptorService implements HttpInterceptor {
 		request: HttpRequest<any>,
 		next: HttpHandler
 	): Observable<HttpEvent<any>> {
-		request = request.clone({
-			setHeaders: {
-				Authorization: `Bearer ${sessionStorage.getItem(
-					'encodedAccessToken'
-				)}`
-			},
-		});
+		request = request.clone();
 
 		return next.handle(request);
 	}
-}
+} 
