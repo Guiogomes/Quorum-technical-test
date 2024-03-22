@@ -1,28 +1,29 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ɵBrowserAnimationBuilder } from '@angular/animations';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BillByLegislatorViewComponent } from './modules/view-bills-by-legislator/view/bill-by-legislator-view/bill-by-legislator-view.component';
+import { CsvSelectorService } from './services/csv-selector.service';
+import { BillsModule } from './modules/view-bills-by-legislator/bills.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BillByLegislatorViewComponent
+    AppComponent
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     CommonModule,
     BrowserModule,
     RouterModule,
     MatTabsModule,
+    BillsModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
+  providers:[CsvSelectorService]
 })
 export class AppModule { }
