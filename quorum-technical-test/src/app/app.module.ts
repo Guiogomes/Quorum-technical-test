@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CsvSelectorService } from './services/csv-selector.service';
 import { BillsModule } from './modules/view-bills-by-legislator/bills.module';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -17,13 +18,16 @@ import { BillsModule } from './modules/view-bills-by-legislator/bills.module';
   ],
   imports: [
     HttpClientModule,
+    BrowserModule,
     FormsModule,
     CommonModule,
-    BrowserModule,
     RouterModule,
     MatTabsModule,
-    BillsModule
+    BillsModule,
+    TableModule,
   ],
-  providers:[CsvSelectorService]
+  providers:[CsvSelectorService],
+  bootstrap:[AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
