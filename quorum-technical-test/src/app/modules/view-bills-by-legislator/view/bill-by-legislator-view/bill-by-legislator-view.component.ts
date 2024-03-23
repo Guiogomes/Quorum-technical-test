@@ -22,10 +22,10 @@ export class BillByLegislatorViewComponent implements OnInit {
     console.log(this.csvData);
   }
   
-  retrieveCsvFileInformation() {
+  async retrieveCsvFileInformation() {
     this.csvUrl = '../../../../../assets/bills_(2).csv'
-    this.csvService.getCsvData(this.csvUrl).subscribe(data => {
-      this.csvData = data;
-    });
+    const data = await this.csvService.getCsvData(this.csvUrl);
+    if(!data) return;
+    this.csvData = data;
   }
 }

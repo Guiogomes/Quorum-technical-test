@@ -15,22 +15,22 @@ export class CsvSelectorService {
 
   constructor(private http: HttpClient) { }
 
-  getCsvData(csvUrl: string): Observable<ICsvData> {
-    return this.http.get(csvUrl, { responseType: 'text' }).pipe(
-      map(data => {
-        const csvArray = data.split('\n');
-        const headers = csvArray[0].split(',');
-        const rows = csvArray.slice(1);
-        const rowData = rows.map(row => {
-          const values = row.split(',');
-          const obj: ICsvRows = {};
-          headers.forEach((header, index) => {
-            obj[header.trim()] = values[index].trim();
-          });
-          return obj;
-        });
-        return { headers, rows: rowData };
-      })
-    );
+  async getCsvData(csvUrl: string): Promise<ICsvData | undefined> {
+    const data = await this.http.get(csvUrl, { responseType: 'text' }).toPromise();
+    if (!data) {
+      throw new Error('Failed to fetch CSV data');
+    }
+    const csvArray = data.split('\n');
+    const headers = csvArray[0].split(',');
+    const rows = csvArray.slice(1);
+    const rowData = rows.map(row => {
+      const values = row.split(',');
+      const obj: ICsvRows = {};
+      headers.forEach((header, index) => {
+        obj[header.trim()] = values[index].trim();
+      });
+      return obj;
+    });
+    return { headers, rows: rowData };
   }
 }
