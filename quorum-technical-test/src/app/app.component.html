@@ -1,5 +1,30 @@
 <div>
-  <p>deu bom</p>
-  <p>{{ csvData }}</p>
+    <button>Filter by Legislator Votes</button>
+    <button>Filter by Bills</button>
 </div>
+<table *ngIf="legislatorCsvData">
+    <tr *ngFor="let header of legislatorCsvData.headers" style="display: flex;">
+      <th>ID</th>
+      <th>Legislator Name</th>
+      <th>Supported bills</th>
+      <th>Opposed bills</th>
+    </tr>
+    <tr *ngFor="let row of legislatorCsvData.rows">
+      <td>{{row['id']}}</td>
+      <td>{{row['name']}}</td>
+    </tr>
+</table>
+<table *ngIf="legislatorCsvData">
+    <tr *ngFor="let header of legislatorCsvData.headers" style="display: flex;">
+      <th>ID</th>
+      <th>Bill</th>
+      <th>Supporters</th>
+      <th>Opposers</th>
+      <th>Primary Sponsors</th>
+    </tr>
+    <tr *ngFor="let row of legislatorCsvData.rows">
+      <td>{{row['id']}}</td>
+      <td>{{row['name']}}</td>
+    </tr>
+</table>
 <router-outlet />
