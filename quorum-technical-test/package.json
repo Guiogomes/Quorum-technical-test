@@ -2,7 +2,7 @@
   "name": "quorum-technical-test",
   "version": "0.0.0",
   "scripts": {
-    "start": "ng serve -o && cloudflared tunnel --url http://localhost:4200/",
+    "start": "ng serve -o",
     "start-local": "ng serve --configuration=local",
     "test": "ng test --watch=false",
     "test-watch": "ng test",
