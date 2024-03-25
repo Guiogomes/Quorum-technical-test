@@ -15,7 +15,8 @@ export class CsvSelectorService {
 
   constructor(private http: HttpClient) { }
 
-  async getCsvData(csvUrl: string): Promise<ICsvData | undefined> {
+  async getCsvData(csvUrl: string): Promise<ICsvData> {
+    console.log(csvUrl)
     const data = await this.http.get(csvUrl, { responseType: 'text' }).toPromise();
     if (!data) {
       throw new Error('Failed to fetch CSV data');
@@ -27,7 +28,9 @@ export class CsvSelectorService {
       const values = row.split(',');
       const obj: ICsvRows = {};
       headers.forEach((header, index) => {
-        obj[header.trim()] = values[index].trim();
+        // const value = values[index]?.trim() ?? '';
+        // const headerToCompare = header?.trim() ?? '';
+        obj[header.trim()] =   values[index].trim();
       });
       return obj;
     });

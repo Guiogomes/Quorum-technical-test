@@ -1,30 +1,31 @@
-<div>
-    <button>Filter by Legislator Votes</button>
-    <button>Filter by Bills</button>
-</div>
-<table *ngIf="legislatorCsvData">
-    <tr *ngFor="let header of legislatorCsvData.headers" style="display: flex;">
+<table *ngIf="legislatorCsvData" class="table">
+    <tr class="table-header">
       <th>ID</th>
       <th>Legislator Name</th>
       <th>Supported bills</th>
       <th>Opposed bills</th>
     </tr>
-    <tr *ngFor="let row of legislatorCsvData.rows">
-      <td>{{row['id']}}</td>
-      <td>{{row['name']}}</td>
+    <tr *ngFor="let row of infosAboutLegislatorVotes" class="table-body">
+      <td class="td">{{row['legislator_id']}}</td>
+      <td class="td">{{row['legislator_name']}}</td>
+      <td class="td">{{row['bills_suported']}}</td>
+      <td class="td">{{row['bills_oppose']}}</td>
     </tr>
 </table>
-<table *ngIf="legislatorCsvData">
-    <tr *ngFor="let header of legislatorCsvData.headers" style="display: flex;">
+<table *ngIf="billsCsvData" class="table">
+    <tr class="table-header">
       <th>ID</th>
       <th>Bill</th>
       <th>Supporters</th>
       <th>Opposers</th>
       <th>Primary Sponsors</th>
     </tr>
-    <tr *ngFor="let row of legislatorCsvData.rows">
-      <td>{{row['id']}}</td>
-      <td>{{row['name']}}</td>
+    <tr *ngFor="let row of billsVotesInfos" class="table-body">
+      <td class="td">{{ row['bill_id'] }}</td>
+      <td class="td">{{ row['bill_title'] }}</td>
+      <td class="td">{{row['support_votes']}}</td>
+      <td class="td">{{row['oppose_votes']}}</td>
+      <td class="td">{{row['sponsor_name']}}</td>
     </tr>
 </table>
 <router-outlet />
